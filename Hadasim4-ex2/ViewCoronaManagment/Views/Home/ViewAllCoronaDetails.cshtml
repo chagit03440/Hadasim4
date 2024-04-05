@@ -1,0 +1,44 @@
+﻿@model Hadasim4_ex2.Models.Response
+
+@{
+    ViewData["Title"] = "ViewAllCoronaDetails";
+}
+
+@if (Model == null || Model.itsCoronaDetails == null || Model.itsCoronaDetails.Count == 0)
+{
+    <p>No corona details found.</p>
+}
+else
+{
+    <h1 style="padding: 20px;">List of all Corona Details</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">EmployeeId</th>
+            <th scope="col">VaccineDate</th>
+            <th scope="col">VaccineManufacturers</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cd in Model.itsCoronaDetails)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => cd.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => cd.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => cd.VaccineDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => cd.VaccineManufacturers)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

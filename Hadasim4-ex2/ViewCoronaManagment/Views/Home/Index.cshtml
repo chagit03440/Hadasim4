@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<head>
+    <link rel="stylesheet" href="path/to/your/css/file.css">
+    <style>
+        .blue-link {
+            color: white;
+        }
+    </style>
+</head>
+
+<div class="container text-center">
+
+    <button type="button" class="btn btn-outline-primary" style="margin-bottom:25px">
+        @Html.ActionLink("Employees table", "ViewAllEmployees", null, new { @class = "blue-link" })
+    </button>
+    <button type="button" class="btn btn-outline-primary" style="margin-bottom:25px">
+        @Html.ActionLink("Corona Details table ", "ViewAllCoronaDetails", null, new { @class = "blue-link" })
+    </button>
+    <button type="button" class="btn btn-outline-primary" style="margin-bottom:25px">
+        @Html.ActionLink("Not Vaccinated Count ", "ViewNotVaccinated", null, new { @class = "blue-link" })
+    </button>
+    <button type="button" class="btn btn-outline-primary" style="margin-bottom:25px">
+        @Html.ActionLink("Sick Employees in Last Month ", "ViewSicksForLastMonth", null, new { @class = "blue-link" })
+    </button>
+
+</div>

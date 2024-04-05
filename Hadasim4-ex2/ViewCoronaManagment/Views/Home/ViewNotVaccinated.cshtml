@@ -1,0 +1,21 @@
+﻿@model Hadasim4_ex2.Models.Response
+
+@{
+    ViewData["Title"] = "ViewNotVaccinated";
+}
+
+@if (Model == null)
+{
+    <p>No data found.</p>
+}
+else
+{
+<html>
+<body>
+    <div>
+        <h1>Total Non-Vaccinated Employees</h1>
+        <p> <span style="font-size: 36px;"> Total: <span style="font-size: 36px;">@Model.NotVaccinated</span></p>
+    </div>
+</body>
+</html>
+}

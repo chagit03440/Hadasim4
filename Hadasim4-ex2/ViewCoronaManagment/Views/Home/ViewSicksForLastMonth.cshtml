@@ -1,0 +1,57 @@
+﻿@model Hadasim4_ex2.Models.Response
+
+@{
+    ViewData["Title"] = "ViewSicksForLastMonth";
+}
+
+@if (Model == null || Model.itsCoronaSummary == null || Model.itsCoronaSummary.Count == 0)
+{
+    <p>No sick for last month found.</p>
+}
+else
+{
+    <html>
+    <head>
+        <title>Corona Summary for last month</title>
+        <!-- Include necessary libraries for charting (e.g., Chart.js) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    </head>
+    <body>
+        <h1>Corona Summary</h1>
+        <!-- Add chart element to display the graph -->
+        <canvas id="coronaChart"></canvas>
+
+        <!-- JavaScript code to create the chart using the provided data -->
+        <script>
+        // Serialize the data from Model.itsCoronaSummary to arrays for labels and data
+        var dates = @Html.Raw(Json.Serialize(Model.itsCoronaSummary.Select(summary => summary.Date.ToShortDateString()).ToList()));
+        var activePatients = @Html.Raw(Json.Serialize(Model.itsCoronaSummary.Select(summary => summary.ActivePatients).ToList()));
+
+        // Example Chart.js code to create a line chart
+        var ctx = document.getElementById('coronaChart').getContext('2d');
+        var coronaChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Active Patients',
+                    data: activePatients,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Example background color
+                    borderColor: 'rgba(255, 99, 132, 1)', // Example border color
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+    </body>
+</html>
+}
